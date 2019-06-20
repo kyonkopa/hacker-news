@@ -7,7 +7,6 @@ import {
     graphql
 } from 'graphql';
 
-const url = require('url');
 
 var App = {
     init: function () {
