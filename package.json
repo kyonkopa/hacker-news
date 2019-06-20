@@ -44,7 +44,6 @@
 		"dotenv": "^8.0.0",
 		"graphql": "^14.3.1",
 		"graphqlhub-schemas": "^0.1.0",
-		"only": "0.0.2",
-		"psl": "^1.1.32"
+		"only": "0.0.2"
 	}
 }

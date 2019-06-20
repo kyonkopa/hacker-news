@@ -68,12 +68,15 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   background: #fff; }
 
-.silver-text {
+.silver-text, footer .search-box-wrap label[for=search-input] {
   color: #949494; }
 
 .flex {
   display: flex;
   flex-wrap: wrap; }
+
+.hidden {
+  visibility: hidden; }
 
 section.main-wrapper {
   font-size: 0.85rem;
@@ -81,13 +84,11 @@ section.main-wrapper {
   width: 85%;
   max-width: 1125px;
   margin: 8px auto; }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 800px) and (min-width: 300px) {
     section.main-wrapper {
-      width: 100%; } }
-  @media screen and (max-width: 300px) {
-    section.main-wrapper {
-      width: 85%;
-      margin: 3% auto; } }
+      width: 100%;
+      margin: 0px auto;
+      display: block; } }
 
 header {
   background: #ff6600;
@@ -180,6 +181,11 @@ footer {
   footer .footer-nav {
     justify-content: center;
     font-size: 0.92em; }
+  footer .search-box-wrap {
+    margin: 1em 0; }
+    @media screen and (max-width: 800px) {
+      footer .search-box-wrap input {
+        width: 90%; } }
 
 
 /*# sourceMappingURL=index.css.map*/

@@ -15,6 +15,11 @@ var App = {
         this.getStories();
     },
 
+    /**
+     * Fetches top stories from hackernews 
+     * 
+     * @return void
+     */
     getStories: function () {
         let schema = new GraphQLSchema({
             query: HackerNews.QueryObjectType
@@ -38,15 +43,27 @@ var App = {
 
         // Make request 
         graphql(schema, query).then((result) => {
-            console.log(result.data.topStories);
+            // Render stories
             render(result.data.topStories);
+
+        }).catch(() => {
+            document.querySelector('.news-items-wrapper').innerHTML = "Sorry we couldn't fetch stories, please check your connection and reload";
         });
     },
 
+    /**
+     * Inserts news item nodes into DOM
+     * 
+     * @param {Array} stories An array of stories to render
+     * 
+     * @return void
+     */
     renderStories: function (stories) {
         let getTimeDifference = App.getTimeDifference,
             newsList = document.querySelector('.news-items-wrapper');
 
+        // Show news actions wrapper
+        document.querySelector('.news-actions').classList.remove('hidden');
         newsList.innerHTML = "";
 
         stories.forEach(story => {
@@ -67,10 +84,18 @@ var App = {
             clone.querySelector('.time-meta').innerText = getTimeDifference(story.timeISO);
             clone.querySelector('.comments-meta').innerText = story.descendants;
 
+            // Insert into DOM
             newsList.insertAdjacentElement('beforeend', clone);
         });
     },
 
+    /**
+     * Returns a string of the time elapsed in hours or minutes
+     * 
+     * @param {Number} time Milliseconds elapsed
+     * 
+     * @return {String}
+     */
     getTimeDifference: function (time) {
         let difference = new Date(time).getMinutes();
         return (difference > 60) ? (difference / 60) + ' hours ago' : difference + ' mins ago';
